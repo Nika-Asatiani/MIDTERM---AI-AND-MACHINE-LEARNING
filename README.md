@@ -27,4 +27,9 @@ Save the figure as regression_plot.png in the same folder.
 
 To reproduce the work you need Python 3 with matplotlib, numpy, and scipy installed. Run the file regression_analysis.py in PyCharm or from the command line. The console will print the calculations and the figure will be saved as regression_plot.png.
 
+Part 2: SPAM Email Detection
+
+1. Data File (named - n_asatiani2024_652847.csv) is provided in this same github repository in the following PATH:
+MIDTERM---AI-AND-MACHINE-LEARNING
+/DATA FILE/
 
