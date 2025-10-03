@@ -137,5 +137,78 @@ The .ravel() method flattens the matrix into a simple list [tn, fp, fn, tp], whi
 accuracy = accuracy_score(y_test, y_pred)
 This accuracy_score() function compares the predicted labels with the true labels and returns the percentage of correct predictions, providing a clear, high-level summary of the model's performance.
 
+4. 
+The application has the built-in capability to evaluate new email texts for spam. The script contains a dedicated function named check_email_spam which is designed specifically for this purpose. This function correctly parses raw email text provided by a user, extracts the exact same features the model was trained on—specifically words, links, capital_words, and spam_word_count—and then uses the already trained logistic regression model and scaler to make a real-time prediction. The interactive menu in the final section of the code allows a user to easily input any custom email, which is then processed by this function to deliver a final classification of "SPAM" or "LEGITIMATE".
+
+5. 
+
+Next to test the applicaiton I will Compose an email text (manually) that should be (I hope) classified by my model as spam.
+
+Email: 
+Subject: URGENT: Congratulations Nika Asatiani - You are our SANGU Winner!
+
+Dear Nika Asatiani,
+
+AMAZING NEWS! You have won a GUARANTEED cash prize of $5,000! This is a limited time offer exclusively for SANGU students. Your student ID was selected in our monthly draw. This is a FREE gift, with no purchase necessary.
+
+To claim your prize, you must act NOW! This deal is URGENT. Click this link immediately to verify your details: www.sangu-rewards-claim-now.com. This offer will expire in 24 hours. Don't miss this chance to earn easy money.
+
+This is the best prize we have ever given. Order your prize confirmation by providing your credit details on our secure portal. Click here: http://secure-winner-portal.net/claim/ID=123. It is 100% FREE! We guarantee you will receive your cash bonus. Congratulations once again! Buy yourself something nice. This is a fantastic deal. Save yourself from financial worries. Win BIG today!
+
+Act NOW! This is a LIMITED offer. FREE money is waiting for you!
+
+Click, click, click!
+
+Sincerely,
+The Prize Redemption Team
+
+Result: 
+
+⚠️  SPAM DETECTED!
+Spam probability:  100.00%
+Ham probability:   0.00% 
+
+I am happy it worked :) 
+
+6.
+
+Of coourse, I will also need to compose an email text (manually) that should be (I hope) classified by my model as HAM (NOT SPAM)
+
+
+Dear Nika Asatiani,
+
+I hope your week is going well.
+
+I have finished reviewing the initial proposal you submitted for your final project in the Machine Learning course. Your topic is quite interesting and relevant. The outline is well-structured, and your initial list of sources is solid.
+
+I have a few suggestions regarding the methodology section that I think could strengthen your research. Could we schedule a brief 15-minute meeting next week to discuss them? Please let me know what day and time works best for you.
+
+Keep up the excellent work.
+
+
+In this case The application outputed the following result: 
+
+✓ LEGITIMATE EMAIL (HAM)
+Ham probability:   77.29%
+Spam probability:  22.71%
+
+I will provide few thoughts why HAM probability is less then 100%. 
+
+The most significant factor was the Spam word count of 4. The model's keyword list contains common words that can appear in legitimate contexts. For example, the email contains the word "best" ("...works best for you"), which is on the spam list. The other three flagged words are likely similar innocuous words that the model cannot distinguish from their use in actual spam. Because the spam_word_count feature has a strong positive coefficient, even a small count significantly increases the calculated probability of spam.
+
+The model also registered 11 Capital words and 89 Words. According to the model's coefficients from its training, an increase in any feature pushes the prediction towards spam. The 11 capital words, which came from normal sentence beginnings and proper nouns ("Nika Asatiani"), still contributed to a higher spam score. The total word count also added a small amount to the spam probability.
+
+In short, the model correctly classified the email as legitimate but assigned a 22.71% spam probability as a measure of "uncertainty." This uncertainty was caused by the presence of a few flagged keywords and the normal use of capitalization that the model has been trained to view with suspicion.
+
+
+It is also important to consider that this applicaiton was created in few minutes with the help of AI chatbots and it is not yet perfect. 
+
+7. 
+
+
+
+
+
+
 
 
