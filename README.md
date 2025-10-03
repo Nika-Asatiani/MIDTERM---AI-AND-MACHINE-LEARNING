@@ -162,6 +162,21 @@ Click, click, click!
 Sincerely,
 The Prize Redemption Team
 
+
+EMAIL CREATION EXPLANATION: 
+
+The email was written to trigger the specific features logistic regression model is sensitive to, as defined in the check_email_spam function:
+
+High spam_word_count: The text is saturated with keywords from script's spam_keywords list. I included words like winner, prize, cash, free, urgent, click, amazing, offer, limited, guarantee, money, earn, bonus, deal, best, and buy multiple times to dramatically increase this feature's value.
+
+Inflated capital_words Count: I used excessive and unnecessary capitalization (e.g., "URGENT", "AMAZING NEWS", "FREE", "GUARANTEED", "NOW") to increase the capital_words count, which is a common trait in spam emails.
+
+Presence of links: Two suspicious-looking links (www.sangu-rewards-claim-now.com and http://secure-winner-portal.net/...) were included to increment the links feature count.
+
+Sense of Urgency and "Too Good to Be True" Offer: The language creates a false sense of urgency ("Act NOW!", "limited time offer") and presents an unrealistic reward ("$5,000 cash prize"), which are classic spam tactics.
+
+
+
 Result: 
 
 ⚠️  SPAM DETECTED!
@@ -185,6 +200,14 @@ I have a few suggestions regarding the methodology section that I think could st
 
 Keep up the excellent work.
 
+Email Creation Methodology: 
+
+The core principle behind the creation of this email was strategic feature minimization. The goal was to craft a message that was professional, contextually relevant, and, most importantly, generated the lowest possible values for the specific features the model is trained to recognize as spam indicators. The process involved carefully considering each of the four features and intentionally avoiding common spam triggers.
+
+First and foremost, the vocabulary was deliberately chosen to achieve a near-zero spam_word_count. The email's content was restricted to professional and academic language directly related to the subject of a university project. Words like "reviewing," "proposal," "methodology," and "research" were used to establish a legitimate context. I consciously avoided every word on the model's spam keyword list, such as "offer," "deal," "guarantee," or "amazing." The one flagged word, "best," was used in a common phrase ("works best for you"), demonstrating how even carefully crafted emails can trigger a simple keyword counter.
+
+I also did not include links at all as currently the model I believe would flag all links as it does not yet have link recognition capabilities built in.
+
 
 In this case The application outputed the following result: 
 
@@ -200,8 +223,6 @@ The model also registered 11 Capital words and 89 Words. According to the model'
 
 In short, the model correctly classified the email as legitimate but assigned a 22.71% spam probability as a measure of "uncertainty." This uncertainty was caused by the presence of a few flagged keywords and the normal use of capitalization that the model has been trained to view with suspicion.
 
-
-It is also important to consider that this applicaiton was created in few minutes with the help of AI chatbots and it is not yet perfect. 
 
 7. 
 
