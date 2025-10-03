@@ -31,5 +31,59 @@ Part 2: SPAM Email Detection
 
 1. Data File (named - n_asatiani2024_652847.csv) is provided in this same github repository in the following PATH:
 MIDTERM---AI-AND-MACHINE-LEARNING
-/DATA FILE/
+/Part 2 - Spam email detection/
+
+2. - I created this applicaiton (source code is provided) and it is provided in this repository as main.py app inside Part 2 - Spam email detection Folder.
+
+
+Data Loading and Initial Inspection
+The process begins by using the powerful pandas library, a standard tool in data science for handling tabular data. The first active line of code in this section is responsible for loading the dataset from its specific location on the computer into the program.
+
+
+df = pd.read_csv(DATA_PATH)
+This command reads the n_asatiani2024_652847.csv file and converts it into a pandas DataFrame, which is essentially a structured table, assigned to the variable df. Immediately after loading, the script performs a quick check to understand the scale of the data.
+
+
+print(f"Dataset shape: {df.shape}")
+print(f"Columns: {list(df.columns)[:5]}... (showing first 5)")
+
+The df.shape attribute provides a snapshot of the dataset's dimensions (number of rows, number of columns). Printing this is the first step in verifying that the data has been loaded correctly and gives an immediate sense of its size. Showing the first five column names helps confirm the features that are present.
+
+
+Data Cleaning and Target Column Identification
+
+Raw datasets are often imperfect and may contain missing values (represented as NaN). Machine learning models require complete numerical data to function, so these gaps must be filled. THE script handles this with a straightforward and effective cleaning step.
+
+
+df = df.fillna(0)
+This line finds every cell in the DataFrame that is empty and replaces it with the number 0. This ensures that the model won't encounter errors and has a complete dataset to work with. Following the cleaning, the script intelligently identifies the target column—the one that contains the labels indicating whether an email is spam (1) or not (0).
+
+target_col = None
+for col in ['spam', 'label', 'class', 'target', 'is_spam']:
+    if col in df.columns:
+        target_col = col
+        break
+if target_col is None:
+    target_col = df.columns[-1]
+    
+This loop makes the code more robust and reusable. Instead of assuming the target column is always named 'spam', it checks for a list of common names. If it finds one, it assigns that name to the target_col variable. If no common name is found, it defaults to assuming the very last column in the table is the target.
+
+Separating Features and Target for Training
+Once the data is clean and the target column is known, the final preprocessing step is to separate the data into two distinct parts: features (X) and the target (y). This is a fundamental requirement for supervised machine learning.
+
+The features (X) are the input variables—all the characteristics of the emails (like word counts, frequency of certain symbols, etc.) that the model will use to make a decision.
+
+
+X = df.drop(columns=[target_col])
+This code creates a new DataFrame X that includes every column from the original data except for the target column.
+
+The target (y) is the "answer key" that the model will learn from. It contains the correct labels that correspond to each row in X.
+
+
+y = df[target_col]
+This line creates the y variable, which holds only the values from the spam label column. Finally, the script prints a summary of the prepared data, including a count of each class in the target variable.
+
+
+print(f"Class distribution:\n{y.value_counts()}")
+This command shows exactly how many emails are labeled as spam and how many are not. It's an important final check to see if the dataset is balanced or if one class significantly outnumbers the other.
 
