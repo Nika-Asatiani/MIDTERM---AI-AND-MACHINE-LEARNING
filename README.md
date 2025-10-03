@@ -225,7 +225,16 @@ In short, the model correctly classified the email as legitimate but assigned a 
 
 
 7. 
+Running the program generates two png files - class_distribution.png and feature_importance.png that can simplify the perception of the data distribution to regular humans. These files are in this same directory in the following folder: Part 2 - Spam email detection. 
 
+Visualization 1: Distribution of Email Classes in Dataset
+This visualization shows how our dataset is split between spam and legitimate emails. The bar chart on the left shows the actual number of emails in each category, while the pie chart on the right shows the percentage breakdown.
+Our dataset contains 2,500 total emails - 1,256 legitimate emails (50.2%) and 1,244 spam emails (49.8%). This means the dataset is almost perfectly balanced, with roughly equal numbers of both types. This balance is important because it means our machine learning model gets to learn from an equal amount of examples from both categories. When a dataset is balanced like this, the model won't be biased toward predicting one class more than the other. It also means our accuracy scores are trustworthy and give us a true picture of how well the model performs.
+
+Visualization 2: Top 15 Most Important Features for Spam Detection
+This chart shows which features are most important for detecting spam emails. The bars show the coefficient values from our logistic regression model - longer bars mean that feature has a stronger influence on the prediction. All the bars are red because all these features indicate spam (positive coefficients push the prediction toward spam).
+The most important feature is "capital_words" with a value of 3.15, which means spam emails use a lot of CAPITALIZED WORDS to grab attention. The second most important is "spam_word_count" (2.23), which counts words like "FREE," "WIN," and "URGENT." Third is "links" (2.19), showing that spam emails often contain multiple website links. Fourth is "words" (1.95), meaning spam emails tend to be longer.
+These results make sense - spam emails typically use aggressive tactics like excessive capitalization, promotional keywords, and multiple links to trick people. Our model has successfully learned to identify these patterns. This visualization helps us understand why the model makes its predictions and shows that our feature extraction is capturing the right characteristics of spam emails.
 
 
 
